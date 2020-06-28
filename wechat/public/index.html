@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./bootstrap.min.css">
+  <link rel="stylesheet" href="./index.css">
+  <link rel="stylesheet" href="./jquery.mCustomScrollbar.min.css">
+  <link rel="stylesheet" href="./jquery.emoji.css">
+  <link rel="stylesheet" href="./css//index.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font: 13px Helvetica, Arial;
+    }
+
+    form {
+      background: #000;
+      padding: 3px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    form input {
+      border: 0;
+      padding: 10px;
+      width: 90%;
+      margin-right: 0.5%;
+    }
+
+    form button {
+      width: 9%;
+      background: rgb(130, 224, 255);
+      border: none;
+      padding: 10px;
+    }
+
+    #messages {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #messages li {
+      padding: 5px 10px;
+    }
+
+    #messages li:nth-child(odd) {
+      background: #eee;
+    }
+
+
+
+    ul,
+    li {
+      list-style: none;
+    }
+
+    .div-libox {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .div-libox>li {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 20px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .new {
+      border: 3px solid #1aad19;
+      color: #1aad19;
+    }
+
+    img {
+      width: 100%;
+      /* height: 100%; */
+    }
+
+    #loginbox {
+      display: flex;
+    }
+
+    #containerbox {
+      height: 100%;
+    }
+
+    #containerbox {
+      display: none;
+    }
+  </style>
+</head>
+<!-- socket.io -->
+<script src='./index.js'></script>
+
+<body>
+
+  <div id='loginbox' class="container text-center justify-content-center align-items-center">
+    <div class="row">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">用户登录</h5>
+          <p class="card-text">
+          <div class="form-group">
+            <label for="username">username</label>
+            <input type="text" class="form-control" id="username" placeholder="随便输个名字把" aria-describedby="emailHelp">
+          </div>
+          <div class="div-libox mt-4">
+            <li><img class="img " src="./img/avatar01.jpg" alt=""></li>
+            <li><img class="img " src="./img/avatar02.jpg" alt=""></li>
+            <li><img class="img " src="./img/avatar03.jpg" alt=""></li>
+            <li><img class="img " src="./img/avatar04.jpg" alt=""></li>
+            <li><img class="img " src="./img/avatar05.jpg" alt=""></li>
+            <li><img class="img " src="./img/avatar06.jpg" alt=""></li>
+            <li><img class="img " src="./img/avatar07.jpg" alt=""></li>
+            <li><img class="img " src="./img/avatar08.jpg" alt=""></li>
+            <li><img class="img " src="./img/avatar09.jpg" alt=""></li>
+            <li><img class="img " src="./img/avatar10.jpg" alt=""></li>
+            <li><img class="img " src="./img/avatar11.png" alt=""></li>
+            <li><img class="img " src="./img/g.jpeg" alt=""></li>
+
+          </div>
+
+          <button type="submit" class="btn btn-primary" id='loginbtn'>登录</button>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id='containerbox' class="pc">
+    <div class="row" style='height:100%'>
+      <div class="container" style="">
+        <!-- 用户列表 -->
+        <div class="user-list">
+          <div class="header">
+            <div class="avatar">
+              <img class="img avatar_url" src="" alt="">
+            </div>
+            <div class="info">
+              <h3 class="username"></h3>
+            </div>
+          </div>
+          <div class="title">
+            <h3>用户列表</h3>
+          </div>
+          <ul>
+            <!-- <li class="user">
+              <div class="avatar"><img src="images/avatar10.jpg" alt=""></div>
+              <div class="name">123</div>
+            </li> -->
+          </ul>
+        </div>
+        <!-- 聊天主窗口 -->
+        <div class="box">
+          <!-- 聊天窗口头部 -->
+          <div class="box-hd">
+            <h3>聊天室(<span class="len-span">1</span>)</h3>
+          </div>
+
+          <!-- 聊天窗口主体区域 -->
+          <div class="box-bd">
+            <!--
+              <div class="system">
+                <p class="message_system">
+                  <span class="content">"往事随风"邀请你和"Boy"加入了群聊</span>
+                </p>
+              </div>
+              <div class="message-box">
+                <div class="my message">
+                  <img class="avatar" src="images/avatar2.jpg" alt="" />
+                  <div class="content">
+                    <div class="bubble">
+                      <div class="bubble_cont">在干嘛</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="message-box">
+                <div class="other message">
+                  <img class="avatar" src="images/avatar02.jpg" alt="" />
+                  <div class="content">
+                    <div class="nickname">小美</div>
+                    <div class="bubble">
+                      <div class="bubble_cont">吃饭</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          -->
+            <!-- <div class="system">
+              <p class="message_system">
+                <span class="content">123加入了群聊</span>
+              </p>
+            </div> -->
+          </div>
+          <!-- 聊天窗口底部区域 -->
+          <div class="box-ft">
+            <!-- 工具栏 -->
+            <div class="toolbar">
+              <a href="javascript:;" title="表情" class="face"></a>
+              <a href="javascript:;" title="截屏" class="screen-cut"> </a>
+              <a href="javascript:;" title="图片" class="file">
+                <label for="file"></label>
+                <input type="file" id="file" style="display: none;">
+              </a>
+            </div>
+            <!-- 内容输入区域 -->
+            <div class="content">
+              <textarea class="text" id="content" contenteditable></textarea>
+            </div>
+            <!-- 发送按钮 -->
+            <div class="action">
+              <span class="desc">按下Ctrl+Enter发送</span>
+              <a class="btn-send" id="btn-send" href="javascript:;">发送</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./jquery-3.3.1.min.js"></script>
+  <script src='./js/jquery.mCustomScrollbar.min.js'></script>
+  <script src='./js/jquery.emoji.js'></script>
+  <script src="/socket.io/socket.io.js"></script>
+
+  <script src='./index.js'></script>
+
+</body>
+
+</html>

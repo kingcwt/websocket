@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* div {
+            height: 200px;
+            width: 200px;
+            border: 1px solid #333;
+        } */
+    </style>
+</head>
+
+<body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io('http://localhost:3000');
+      //接受服务器返回的数据
+      socket.on('send',data=>{
+          console.log(data)
+      })
+      socket.emit('hehe',{name:'chr'})
+    </script>
+</body>
+
+</html>

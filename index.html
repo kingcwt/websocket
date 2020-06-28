@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 200px;
+            width: 200px;
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" placeholder="输入你的内容">
+    <button>发送请求</button>
+
+    <!-- 显示结果 -->
+    <div></div>
+
+
+    <script>
+        let input = document.querySelector('input'),
+            button = document.querySelector('button'),
+            div = document.querySelector('div');
+
+        // h5 已经提供了websocket API
+        // ws://echo.websocket.org
+        var socket = new WebSocket('ws://localhost:3000');
+
+        //open:当和websock连接成功 触发open
+        socket.addEventListener('open', function (param) {
+            div.innerHTML = '连接成功'
+        });
+
+        // 主动给websockt服务发送消息
+        button.addEventListener('click', function () {
+            let value = input.value;
+            socket.send(value);
+        })
+        // 接受websocket服务的数据
+        socket.addEventListener('message', function (e) {
+            console.log(e)
+            div.innerHTML = e.data;
+        })
+        //
+        socket.addEventListener('close',function () {
+            
+          })
+    </script>
+</body>
+
+</html>
